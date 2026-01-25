@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELYA - Brown Jacket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-secondary: #f6f6f6;
+            --text-main: #1a1a1a;
+            --border-color: #e0e0e0;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-main);
+            color: var(--text-main);
+            background-color: white;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Header --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1000;
+        }
+
+        .header-left, .header-right { display: flex; gap: 20px; flex: 1; }
+        .header-right { justify-content: flex-end; }
+        .logo { font-weight: 800; font-size: 24px; letter-spacing: 2px; }
+        .icon-btn { background: none; border: none; cursor: pointer; font-size: 20px; }
+
+        /* --- Breadcrumbs --- */
+        .breadcrumbs {
+            padding: 20px 40px;
+            font-size: 12px;
+            color: #888;
+        }
+        .breadcrumbs span { color: #ccc; margin: 0 5px; }
+
+        /* --- Main Layout --- */
+        .product-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            padding: 0 40px 80px 40px;
+        }
+
+        /* --- Image Gallery --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .gallery img {
+            width: 100%;
+            background-color: var(--bg-secondary);
+            display: block;
+        }
+        .gallery .full-width { grid-column: span 2; }
+
+        /* --- Product Info Sidebar --- */
+        .product-info {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .new-arrival { font-size: 11px; text-transform: uppercase; color: #888; margin-bottom: 10px; }
+        .product-title-row { display: flex; justify-content: space-between; align-items: flex-start; }
+        .product-title { font-size: 24px; font-weight: 500; margin: 0; }
+        .price { font-size: 18px; font-weight: 600; margin: 10px 0 20px 0; }
+        .description { font-size: 13px; line-height: 1.6; color: #333; margin-bottom: 30px; }
+
+        /* --- Selection Elements --- */
+        .section-label { font-size: 12px; font-weight: 600; margin-bottom: 12px; display: block; }
+
+        .color-swatch {
+            width: 25px;
+            height: 25px;
+            background-color: #3e322b; /* Цвет куртки */
+            border: 1px solid #000;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .size-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .size-guide { font-size: 11px; text-decoration: underline; cursor: pointer; }
+
+        .size-dropdown {
+            width: 100%;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 13px;
+            margin-bottom: 40px;
+        }
+
+        .add-to-bag {
+            width: 100%;
+            background: black;
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .shipping-note { font-size: 11px; color: #666; text-align: center; margin-bottom: 40px; }
+
+        /* --- Accordions --- */
+        .accordion {
+            border-top: 1px solid var(--border-color);
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            .product-container { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: 1fr; }
+            .gallery .full-width { grid-column: span 1; }
+            header { padding: 15px 20px; }
+            .product-container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <button class="icon-btn">☰</button>
+        <button class="icon-btn">🔍</button>
+    </div>
+    <div class="logo">ELYA</div>
+    <div class="header-right">
+        <button class="icon-btn">👤</button>
+        <button class="icon-btn">👜</button>
+    </div>
+</header>
+
+<nav class="breadcrumbs">
+    Home <span>/</span> Ready to wear <span>/</span> Jacket
+</nav>
+
+<div class="product-container">
+    <div class="gallery">
+        <img src="https://via.placeholder.com/800x1000/f6f6f6/3e322b?text=Front+View" class="full-width" alt="Jacket Front">
+        <img src="https://via.placeholder.com/400x600/f6f6f6/3e322b?text=Model+1" alt="Model front">
+        <img src="https://via.placeholder.com/400x600/f6f6f6/3e322b?text=Model+2" alt="Model back">
+        <img src="https://via.placeholder.com/800x1000/f6f6f6/3e322b?text=Detail+View" class="full-width" alt="Jacket detail">
+    </div>
+
+    <div class="product-info">
+        <div class="new-arrival">New arrivals</div>
+        <div class="product-title-row">
+            <h1 class="product-title">Brown jacket</h1>
+            <span style="font-size: 20px; cursor: pointer;">♡</span>
+        </div>
+        <div class="price">$1.490</div>
+
+        <p class="description">
+            Jacket in brown stretch wool gabardine embodies quiet sophistication with a clean silhouette and effortless drape. Made in Italy.
+        </p>
+
+        <span class="section-label">Color</span>
+        <div class="color-swatch"></div>
+
+        <div class="size-header">
+            <span class="section-label">Size</span>
+            <span class="size-guide">Size guide</span>
+        </div>
+
+        <div class="size-dropdown">
+            <span>Select a size</span>
+            <span>∨</span>
+        </div>
+
+        <p class="shipping-note">Complimentary Standard Shipping above $1000</p>
+
+        <button class="add-to-bag">Add to bag</button>
+
+        <div class="accordion">
+            <span>Size and Fit</span>
+            <span>+</span>
+        </div>
+        <div class="accordion">
+            <span>Details</span>
+            <span>+</span>
+        </div>
+        <div class="accordion">
+            <span>Shipping & Returns</span>
+            <span>+</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
