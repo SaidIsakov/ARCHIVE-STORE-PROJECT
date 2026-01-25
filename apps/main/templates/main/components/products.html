@@ -4,63 +4,15 @@
     </div>
 
    <main class="product-grid">
-        <a href="product_detail.html" class="product-card">
+    {% for product in products %}
+        <a href="{% url "product-detail" product.slug%}" class="product-card">
             <div class="image-container">
-                <img src="https://via.placeholder.com/400x500/f9f9f9/333333?text=Black+Tee" alt="Owners' Tee - Black">
+                <img src="{{ product.main_image.url }}" alt="Roots Tee - Light Blue">
             </div>
             <div class="product-info">
-                <h3 class="product-name">Owners' Tee - Black</h3>
-                <div class="product-price">€49,95 EUR</div>
+                <h3 class="product-name">{{ product.title }}</h3>
+                <div class="product-price">{{ product.price }}</div>
             </div>
         </a>
-
-        <a href="product_detail.html" class="product-card">
-            <div class="image-container">
-                <img src="https://via.placeholder.com/400x500/f9f9f9/333333?text=Black+Wash" alt="Owners' Tee - Black Wash">
-            </div>
-            <div class="product-info">
-                <h3 class="product-name">Owners' Tee - Black Wash</h3>
-                <div class="product-price">€79,95 EUR</div>
-            </div>
-        </a>
-
-        <a href="product_detail.html" class="product-card">
-            <div class="image-container">
-                <img src="https://via.placeholder.com/400x500/f9f9f9/333333?text=Grey+Wash" alt="Owners' Tee - Grey Wash">
-            </div>
-            <div class="product-info">
-                <h3 class="product-name">Owners' Tee - Grey Wash</h3>
-                <div class="product-price">€79,95 EUR</div>
-            </div>
-        </a>
-
-        <a href="product_detail.html" class="product-card">
-            <div class="image-container">
-                <img src="https://via.placeholder.com/400x500/f9f9f9/333333?text=White+Tee" alt="Owners' Tee - White">
-            </div>
-            <div class="product-info">
-                <h3 class="product-name">Owners' Tee - White</h3>
-                <div class="product-price">€49,95 EUR</div>
-            </div>
-        </a>
-
-        <a href="product_detail.html" class="product-card">
-            <div class="image-container">
-                <img src="https://via.placeholder.com/400x500/f9f9f9/333333?text=Roots+Black" alt="Roots Tee - Black">
-            </div>
-            <div class="product-info">
-                <h3 class="product-name">Roots Tee - Black</h3>
-                <div class="product-price">€69,95 EUR</div>
-            </div>
-        </a>
-
-        <a href="product_detail.html" class="product-card">
-            <div class="image-container">
-                <img src="https://via.placeholder.com/400x500/f9f9f9/333333?text=Light+Blue" alt="Roots Tee - Light Blue">
-            </div>
-            <div class="product-info">
-                <h3 class="product-name">Roots Tee - Light Blue</h3>
-                <div class="product-price">€69,95 EUR</div>
-            </div>
-        </a>
+        {% endfor %}
     </main>

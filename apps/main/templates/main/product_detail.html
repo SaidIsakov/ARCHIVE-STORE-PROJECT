@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+<main>
+{% block main %}
+<nav class="breadcrumbs">
+    Home <span>/</span> Ready to wear <span>/</span> Jacket
+</nav>
+
+<div class="product-container">
+    <div class="gallery-wrapper">
+      <div class="thumbnails">
+          {% for image in product.images.all %}
+            <img src="{{ image.image.url}}" class="thumb-item {% if forloop.first %}active{% endif %}" alt="front">
+            {% endfor %}
+          </div>
+        <div class="main-image-container">
+            <img id="main-photo" src="{{ product.main_image.url }}" alt="Selected Product">
+        </div>
+    </div>
+
+    <div class="product-info">
+        <div class="new-arrival">New arrivals</div>
+        <div class="product-title-row">
+            <h1 class="product-title">{{ product.title }}</h1>
+            <span style="font-size: 20px; cursor: pointer;">♡</span>
+        </div>
+        <div class="price">$1.490</div>
+
+        <p class="description">
+            Jacket in brown stretch wool gabardine embodies quiet sophistication with a clean silhouette and effortless drape. Made in Italy.
+        </p>
+
+        <span class="section-label">Color</span>
+        <div class="color-swatch">{{ product.color }}</div>
+
+        <!-- Sizes -->
+        {% if product.product_size.all %}
+        <div class="size-header">
+            <span class="section-label">Select Size</span>
+            <span class="size-guide">Size guide</span>
+        </div>
+
+        <div class="size-selector">
+          {% for product_size in product.product_size.all %}
+            <label class="size-option">
+                <input type="radio" name="size" value="{{ product_size.size.id }}">
+                <span class="size-label">{{ product_size.size.title }}</span>
+            </label>
+            {% endfor %}
+          </div>
+        {% else %}
+            <div>
+                <p class="text-sm text-gray-600">No sizes available</p>
+            </div>
+        {% endif %}
+
+
+        <button class="add-to-bag">Add to bag</button>
+
+        <div class="accordion">
+            <span>Size and Fit</span>
+            <span>+</span>
+        </div>
+        <div class="accordion">
+            <span>Details</span>
+            <span>+</span>
+        </div>
+        <div class="accordion">
+            <span>Shipping & Returns</span>
+            <span>+</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const thumbnails = document.querySelectorAll('.thumb-item');
+        const mainPhoto = document.getElementById('main-photo');
+
+        if (thumbnails.length > 0 && mainPhoto) {
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+
+                    thumbnails.forEach(t => t.classList.remove('active'));
+
+                    this.classList.add('active');
+
+                    mainPhoto.style.opacity = '0';
+
+                    setTimeout(() => {
+                        mainPhoto.src = this.src;
+                        mainPhoto.style.opacity = '1';
+                    }, 200);
+                });
+            });
+        }
+
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach(acc => {
+            acc.addEventListener('click', function() {
+                const icon = this.querySelector('span:last-child');
+                icon.textContent = icon.textContent === '+' ? '−' : '+';
+            });
+        });
+    });
+</script>
+
+{% endblock main %}
+</main>
+
