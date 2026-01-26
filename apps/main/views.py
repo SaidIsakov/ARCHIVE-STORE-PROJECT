@@ -1,5 +1,9 @@
 from django.views.generic import TemplateView, DetailView
 from .models import Product, ProductSize
+from django.template.response import TemplateResponse
+
+
+
 
 class IndexView(TemplateView):
   template_name = 'main/index.html'
@@ -20,3 +24,9 @@ class ProductaDetailView(DetailView):
       context = super().get_context_data(**kwargs)
       return context
 
+  def get(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    context = self.get_context_data(**kwargs)
+    if request.headers.get('HX-Request'):
+      return TemplateResponse(request, 'main/partials/product_detail.html', context)
+    return TemplateResponse(request, self.template_name, context)

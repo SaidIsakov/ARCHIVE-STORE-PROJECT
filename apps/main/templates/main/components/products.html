@@ -1,11 +1,16 @@
 <div class="container">
     <div class="top-bar">
-        <span>9 items</span>
+        <span>{{ products.count }} items</span>
     </div>
 
    <main class="product-grid">
     {% for product in products %}
-        <a href="{% url "product-detail" product.slug%}" class="product-card">
+        <a
+           href="{% url "product-detail" product.slug %}"
+           hx-get="{% url "product-detail" product.slug %}"
+           hx-target="#main-content"
+           hx-push-url="true"
+           class="product-card">
             <div class="image-container">
                 <img src="{{ product.main_image.url }}" alt="Roots Tee - Light Blue">
             </div>

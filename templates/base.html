@@ -4,21 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muaracha Store</title>
+    <title>ARCHIVE STORE</title>
+
+    <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- HTMX -->
+     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="{% static "css/base.css" %}">
     <link rel="stylesheet" href="{% static "css/products.css" %}">
     <link rel="stylesheet" href="{% static "css/product_detail.css" %}">
-    <link rel="stylesheet" href="{% static "js/product_detail.js" %}">
+
+    <!-- JS -->
+    {% comment %} <link rel="stylesheet" href="{% static "js/product_detail.js" %}"> {% endcomment %}
 </head>
 
 <!-- HEADER -->
 {% include "components/header.html" %}
 
-<main>
-  {% block main %}
+<main id='main-content'>
+{% block main %}
 
-  {% endblock main %}
+{% endblock main %}
 </main>
 
 

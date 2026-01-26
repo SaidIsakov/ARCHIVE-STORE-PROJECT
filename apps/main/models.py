@@ -5,13 +5,14 @@ class Category(models.Model):
   title = models.CharField(max_length=50)
   slug = models.SlugField(unique=True)
 
-  def __str__(self):
-    return self.title
-
   def save(self, *args, **kwargs):
     if not self.id:
       self.slug = slugify(self.title)
       super().save(*args, **kwargs)
+
+  def __str__(self):
+    return self.title
+
 
 class Size(models.Model):
   title = models.CharField(max_length=20)
