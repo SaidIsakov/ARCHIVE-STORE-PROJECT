@@ -43,6 +43,7 @@
         .product-title { font-size: 28px; font-weight: 500; margin: 0; }
         .price { font-size: 20px; font-weight: 600; margin: 10px 0 30px 0; }
 
+        /* Size */
         .size-selector {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -78,6 +79,50 @@
             border-color: black;
             transform: scale(0.95); /* Эффект нажатия */
         }
+
+        /* Color */
+    .color-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.color-option {
+    cursor: pointer;
+    position: relative;
+}
+
+.color-option input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.color-swatch {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%; /* Круглые свотчи */
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+    padding: 2px;
+    background-clip: content-box; /* Создает отступ между рамкой и цветом */
+}
+
+/* Эффект при наведении */
+.color-swatch:hover {
+    transform: scale(1.1);
+    border-color: #888;
+}
+
+/* Состояние выбранного цвета */
+.color-option input:checked + .color-swatch {
+    border-color: #000;
+    transform: scale(1.1);
+}
+
 
         .add-to-bag {
             width: 100%;

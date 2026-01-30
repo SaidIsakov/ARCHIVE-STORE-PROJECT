@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.main.models import Product, Category, ProductSize, ProductImage, Size
+from apps.main.models import Product, Category, ProductSize, ProductImage, Size, Color, ProductColor
 
 
 class ProductImageInline(admin.TabularInline):
@@ -10,13 +10,17 @@ class ProductSizeInline(admin.TabularInline):
   model = ProductSize
   extra = 1
 
+class ProductColorInline(admin.TabularInline):
+  model = ProductColor
+  extra = 1
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-  list_display = ['title', 'category', 'color', 'price']
-  list_filter = ['color', 'category']
-  search_fields = ['name', 'color', 'description']
+  list_display = ['title', 'category', 'price']
+  list_filter = ['category']
+  search_fields = ['name', 'description']
   prepopulated_fields = {'slug' : ('title',)}
-  inlines = [ProductImageInline, ProductSizeInline]
+  inlines = [ProductImageInline, ProductSizeInline, ProductColorInline]
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -27,5 +31,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class SizeAdmin(admin.ModelAdmin):
   list_display = ['title']
 
-
+@admin.register(Color)
+class SizeAdmin(admin.ModelAdmin):
+  list_display = ['title', 'hex_code']
 

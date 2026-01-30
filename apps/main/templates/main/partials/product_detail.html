@@ -1,7 +1,12 @@
 
 {% block main %}
-<nav class="breadcrumbs">
-    Home <span>/</span> Ready to wear <span>/</span> Jacket
+<nav class="">
+    <a href="{% url "index" %}"
+       hx-get="{% url "index" %}"
+       hx-target="#main-content"
+       hx-push-url="true"
+       class="fs-5 fw-bold text-decoration-none text-dark ms-2">Home</a>
+       <span class="fs-6">/</span>
 </nav>
 
 <div class="product-container">
@@ -28,14 +33,29 @@
             Jacket in brown stretch wool gabardine embodies quiet sophistication with a clean silhouette and effortless drape. Made in Italy.
         </p>
 
-        <span class="section-label">Color</span>
-        <div class="color-swatch">{{ product.color }}</div>
+        <!-- COLOR -->
+        {% if product.product_color.all %}
+        <div class="color-section">
+        <span class="section-label">Color:</span>
+            <div class="color-selector">
+            {% for color in product.product_color.all %}
+            <label class="color-option">
+                <input type="radio" name="color" value="{{ color.id }}" {% if forloop.first %}checked{% endif %}>
+                <span class="color-swatch"
+                  style="background-color: {{ color.color.hex_code }};"
+                  title="{{ color.color.title }}"
+                  data-color-name="{{ color.color.title }}">
+            </span>
+          </label>
+          {% endfor %}
+            </div>
+        </div>
+        {% endif %}
 
         <!-- Sizes -->
         {% if product.product_size.all %}
         <div class="size-header">
             <span class="section-label">Select Size</span>
-            <span class="size-guide">Size guide</span>
         </div>
 
         <div class="size-selector">
@@ -54,19 +74,6 @@
 
 
         <button class="add-to-bag">Add to bag</button>
-
-        <div class="accordion">
-            <span>Size and Fit</span>
-            <span>+</span>
-        </div>
-        <div class="accordion">
-            <span>Details</span>
-            <span>+</span>
-        </div>
-        <div class="accordion">
-            <span>Shipping & Returns</span>
-            <span>+</span>
-        </div>
     </div>
 </div>
 

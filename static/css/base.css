@@ -52,6 +52,15 @@
             text-decoration: none;
           }
 
+      /* ACCOUNT */
+      .account-button{
+        border: none;
+        background-color: white;
+        text-align: center;
+        margin-left: 5px;
+        margin-bottom: 5px;
+      }
+
         /* --- Search Bar Style --- */
         .search-container {
             display: flex;

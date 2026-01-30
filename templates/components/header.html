@@ -7,15 +7,32 @@
                             <circle cx="11" cy="11" r="8"></circle>
                         </svg>
             </button>
-            <input type="text" class="search-input" placeholder="Search...">
+            <input
+            type="text"
+            class="search-input"
+            placeholder="Search..."
+            >
         </div>
     </div>
 
-    <a class="logo-btn" href="{% url "index" %}">
+    <a class="logo-btn" href="{% url "index" %}"
+                        hx-get="{% url "index" %}"
+                        hx-target="#main-content"
+                        hx-push-url="true">
     <div class="logo">ARCHIVE STORE</div>
     </a>
 
     <div class="header-right">
         <div style="font-size: 12px; cursor: pointer;">Cart (0)</div>
     </div>
+    <div class="account-container">
+          <a href="#">
+          <button class="account-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user" aria-hidden="true">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+          </button>
+        </a>
+        </div>
 </header>

@@ -13,6 +13,12 @@ class IndexView(TemplateView):
       context["products"] = Product.objects.all()
       return context
 
+  def get(self, request, *args, **kwargs):
+    context = self.get_context_data(**kwargs)
+    if request.headers.get('HX-Request'):
+      return TemplateResponse(request, 'main/partials/index.html', context)
+    return TemplateResponse(request, self.template_name, context)
+
 
 class ProductaDetailView(DetailView):
   template_name = 'main/product_detail.html'
