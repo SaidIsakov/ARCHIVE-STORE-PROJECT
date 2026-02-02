@@ -1,9 +1,9 @@
-<div class="container" id="container">
+{% comment %} <div class="container" id="container">
     <div class="top-bar">
         <span>{{ products.count }} items</span>
     </div>
 
-   <main class="product-grid">
+   <main class="product-grid" id="product-grid">
     {% for product in products %}
         <a
            href="{% url "product-detail" product.slug %}"
@@ -20,4 +20,4 @@
             </div>
         </a>
         {% endfor %}
-    </main>
+    </main> {% endcomment %}

@@ -11,6 +11,11 @@
             type="text"
             class="search-input"
             placeholder="Search..."
+            name='q'
+            hx-get={% url "search-products" %}
+            hx-target='#container'
+            hx-trigger="keyup changed delay:300ms"
+            hx-include="[name='q']"
             >
         </div>
     </div>
