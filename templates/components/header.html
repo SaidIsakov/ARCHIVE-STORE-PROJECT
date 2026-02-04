@@ -13,7 +13,7 @@
             placeholder="Search..."
             name='q'
             hx-get={% url "search-products" %}
-            hx-target='#container'
+            hx-target='#main-content'
             hx-trigger="keyup changed delay:300ms"
             hx-include="[name='q']"
             >
