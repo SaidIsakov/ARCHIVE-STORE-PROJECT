@@ -39,16 +39,16 @@ class ProductaDetailView(DetailView):
     return TemplateResponse(request, self.template_name, context)
 
 
-def search_products(request):
-  query = request.GET.get('q')
+class SearchResultsView(TemplateView):
+    """Результаты поиска"""
+    template_name = 'main/components/products.html'
 
-  if query:
-    products = Product.objects.filter(title__icontains=query)
-  else:
-    products = Product.objects.all()
-
-  context={
-    'products': products
-    }
-
-  return render(request, 'main/components/products.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q', '')
+        context['query'] = query
+        if query:
+            context['products'] = Product.objects.filter(title__icontains=query)[:5]
+        else:
+            context['products'] = Product.objects.all()
+        return context
