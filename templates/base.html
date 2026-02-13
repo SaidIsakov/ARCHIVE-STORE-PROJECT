@@ -18,10 +18,16 @@
     <link rel="stylesheet" href="{% static "css/base.css" %}">
     <link rel="stylesheet" href="{% static "css/products.css" %}">
     <link rel="stylesheet" href="{% static "css/product_detail.css" %}">
+    <link rel="stylesheet" href="{% static "cart/css/cart-modal.css" %}">
 
     <!-- JS -->
     {% comment %} <link rel="stylesheet" href="{% static "js/product_detail.js" %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static "cart/js/modal-cart.js" %}">
 </head>
+
+<!-- CART MODAL -->
+{% include "cart/cart_modal.html" %}
+
 
 <!-- HEADER -->
 {% include "components/header.html" %}
@@ -37,3 +43,31 @@
  {% include "components/footer.html" %}
 
 </html>
+
+
+<script>
+// 2. Логика корзины
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartBtn = document.getElementById('openCart');
+        const sideCart = document.getElementById('side-cart');
+        const overlay = document.getElementById('cart-overlay');
+        const closeBtn = document.getElementById('close-cart');
+
+        function openCart() {
+            sideCart.classList.add('active');
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Отключаем скролл страницы
+        }
+
+        function closeCart() {
+            sideCart.classList.remove('active');
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Возвращаем скролл
+        }
+
+        if (cartBtn) cartBtn.addEventListener('click', openCart);
+        if (closeBtn) closeBtn.addEventListener('click', closeCart);
+        if (overlay) overlay.addEventListener('click', closeCart);
+    });
+
+</script>
